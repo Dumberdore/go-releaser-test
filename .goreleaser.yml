@@ -15,8 +15,10 @@ builds:
       - -X main.BuildTime={{.Timestamp}}
     goos:
       - linux
-      - windows
       - darwin
+dockers:
+  - image_templates:
+      - pkya/{{.ProjectName}}
 archives:
   - replacements:
       darwin: Darwin
