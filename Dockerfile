@@ -1,3 +1,3 @@
-FROM public.ecr.aws/lambda/provided:al2
-COPY go-releaser-test /main
+FROM public.ecr.aws/amazonlinux/amazonlinux:latest
+COPY go-releaser-test /usr/bin/go-releaser-test
 ENTRYPOINT [ "/main" ]
