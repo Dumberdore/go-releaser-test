@@ -1,10 +1,10 @@
 // main.go
-package hello
+package main
+
+func Hello() string {
+	return "Hello, world."
+}
 
 func main() {
 	println("Ba dum, tss!")
-}
-
-func Hello() string {
-    return "Hello, world."
 }
