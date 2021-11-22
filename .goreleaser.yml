@@ -6,6 +6,8 @@ before:
     - go mod tidy
     - go mod download
     - go test ./...
+    - export DOCKER_PASSWORD=$(aws ecr get-login-password --region us-east-1)
+    - export DOCKER_USERNAME=AWS
 builds:
   -
     binary: go-releaser-test
@@ -25,7 +27,8 @@ dockers:
   - goos: linux
     goarch: amd64
     image_templates:
-      - pkya/{{.ProjectName}}:{{ .Tag }}
+      - 620354051118.dkr.ecr.us-east-1.amazonaws.com/toast/{{.ProjectName}}:{{ .Tag }}
+      - 620354051118.dkr.ecr.us-east-1.amazonaws.com/toast/{{.ProjectName}}:latest
     build_flag_templates:
       - "--pull"
       - "--label=org.opencontainers.image.created={{.Date}}"
