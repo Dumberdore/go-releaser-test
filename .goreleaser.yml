@@ -6,8 +6,11 @@ before:
     - go mod tidy
     - go mod download
     - go test ./...
-    - export DOCKER_PASSWORD=$(aws ecr get-login-password --region us-east-1)
-    - export DOCKER_USERNAME=AWS
+
+env:
+  - DOCKER_PASSWORD=$(aws ecr get-login-password --region us-east-1)
+  - DOCKER_UESERNAME=AWS
+
 builds:
   -
     binary: go-releaser-test
@@ -24,7 +27,8 @@ builds:
       - amd64
       - arm64
 dockers:
-  - goos: linux
+  -
+    goos: linux
     goarch: amd64
     image_templates:
       - 620354051118.dkr.ecr.us-east-1.amazonaws.com/toast/{{.ProjectName}}:{{ .Tag }}
